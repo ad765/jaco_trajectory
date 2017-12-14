@@ -9,4 +9,20 @@ git clone https://github.com/ad765/jaco_trajectory.git
 cd ~/catkin_ws
 catkin_make
 ```
-## How to use
+
+## Running the files
+To run any ROS files, source all files first.
+```
+source /opt/ros/indigo/setup.bash
+source devel/setup.bash
+```
+Start a roscore, and initialize the Gazebo model
+```
+roslaunch kinova_gazebo robot_launch.launch kinova_robotType:=j2n6s300
+```
+Open a new terminal and run the controller script
+```
+rosrun jaco_trajectory jaco_control.py
+```
+
+## Understanding the code
