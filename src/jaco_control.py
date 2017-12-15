@@ -3,59 +3,15 @@
 
 import rospy
 import numpy
-from robot_functions import *						# Built functions for jaco model
 from scipy.linalg import pinv
 import time
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-from trajectory_msgs.msg import JointTrajectory
-from trajectory_msgs.msg import JointTrajectoryPoint
 from math import pi
 from math import cos
 from math import sin
 from sympy import *
-
-def moveJoint (jointcmds):
-  topic_name = '/j2n6s300/effort_joint_trajectory_controller/command'
-  pub = rospy.Publisher(topic_name, JointTrajectory, queue_size=1)
-  jointCmd = JointTrajectory()  
-  point = JointTrajectoryPoint()
-  jointCmd.header.stamp = rospy.Time.now() + rospy.Duration.from_sec(0.0);  
-  point.time_from_start = rospy.Duration.from_sec(5.0)
-  for i in range(0, 6):
-    jointCmd.joint_names.append('j2n6s300_joint_'+str(i+1))
-    point.positions.append(jointcmds[i])
-    point.velocities.append(0)
-    point.accelerations.append(0)
-    point.effort.append(0) 
-  jointCmd.points.append(point)
-  rate = rospy.Rate(1000)
-  count = 0
-  while (count < 500):
-    pub.publish(jointCmd)
-    count = count + 1
-    rate.sleep()     
-
-def moveFingers(jointcmds):
-  topic_name = '/j2n6s300/effort_finger_trajectory_controller/command'
-  pub = rospy.Publisher(topic_name, JointTrajectory, queue_size=1)  
-  jointCmd = JointTrajectory()  
-  point = JointTrajectoryPoint()
-  jointCmd.header.stamp = rospy.Time.now() + rospy.Duration.from_sec(0.0);  
-  point.time_from_start = rospy.Duration.from_sec(5.0)
-  for i in range(0, 3):
-    jointCmd.joint_names.append('j2n6s300_joint_finger_'+str(i+1))
-    point.positions.append(jointcmds[i])
-    point.velocities.append(0)
-    point.accelerations.append(0)
-    point.effort.append(0) 
-  jointCmd.points.append(point)
-  rate = rospy.Rate(1000)
-  count = 0
-  while (count < 500):
-    pub.publish(jointCmd)
-    count = count + 1
-    rate.sleep()
+from robot_functions import *	# Built functions for jaco model
 
 if __name__ == '__main__':
   try:
