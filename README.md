@@ -1,4 +1,5 @@
 ## Description
+Trajectory controller for Jaco 6DOF arm. Includes inverse kinematics for optimized trajectory.
 
 ## Installation
 The following tutorial assumes that all files and packages are created using the "catkin" method. Make sure to install the Jaco arm drivers and files, which are located in the kinova-ros repository. To install all the files, follow these steps (assuming your workspace is setup following the standard conventions):
