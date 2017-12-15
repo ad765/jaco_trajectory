@@ -21,6 +21,12 @@ if __name__ == '__main__':
     # Allow gazebo to launch
     rospy.sleep(1)
 
+    ######################### EDIT THIS SECTION ###############################
+    # Parameters
+    numPts = 10		# Discretized path (Choose number of points)
+    step   = 0.5	# Step size 
+    error  = 0.001	# Error between state and desired state (theshold value, in meters)
+
     # Initial state
     q10 = 0.0
     q20 = 2.9
@@ -29,20 +35,10 @@ if __name__ == '__main__':
     q50 = 1.4
     q60 = 0.0
 
-    moveJoint([q10,q20,q30,q40,q50,q60])
-    moveFingers([1.3,1.3,1.3])
-
-
-    ######################### EDIT THIS SECTION ###############################
-    # Parameters
-    numPts = 10		# Discretized path (Choose number of points)
-    step   = 0.5	# Step size 
-    error  = 0.001	# Error between state and desired state (theshold value, in meters)
-
     # Final state
-    xf = 0.3
-    yf = 0.2
-    zf = 0.3
+    xf = 0.2
+    yf = 0.6
+    zf = 0.4
     ###########################################################################
 
 
@@ -62,6 +58,10 @@ if __name__ == '__main__':
     zPath = numpy.linspace(init_X[2], final_X[2], num=numPts)
     ###########################################################################
 
+    
+    # Move robot to initial state
+    moveJoint([q10,q20,q30,q40,q50,q60])
+    moveFingers([1.3,1.3,1.3])
 
     # Initialize variables
     delta_X = Matrix([[1000],[1000],[1000]])

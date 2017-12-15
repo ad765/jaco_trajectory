@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 """ Built-functions for jaco_control.py to use. Includes mathematical functions, such as matrix multiplication with D-H parameters, inverse kinematics with pseudo-inverse jacobian, and symbolic mathematics. """
 
+import rospy
 import numpy
 from scipy.linalg import pinv
 from math import pi
